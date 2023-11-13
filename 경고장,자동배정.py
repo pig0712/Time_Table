@@ -21,6 +21,14 @@ class 시간표배정기:
                 self.시간표[day][time] = professor
                 return True
         return False
+def load_timetable(self):
+    try:
+        with open('timetable.txt', 'r') as f:
+            for line in f:
+                row = list(map(int, line.strip().split(',')))
+                self.timetable.append(row)
+    except FileNotFoundError:
+        pass  # 파일이 없으면 무시하고 계속 진행
 
 # 사용 예시:
 scheduler  = TimetableScheduler()
@@ -60,3 +68,30 @@ if success:
     print(f"{professor_name} 교수님의 수업이 배정되었습니다.")
 else:
     print("수업 배정에 실패했습니다. 교수님의 일정 또는 슬롯의 가용성을 확인해주세요.")
+import random
+
+class 시간표배정기:
+    def __init__(self):
+        self.timetable = [[None] * 5 for _ in range(6)]
+
+    def 자동_수업_배정(self, 교수):
+        for _ in range(100):
+            day, time = random.randint(0, 5), random.randint(0, 4)
+            if self.timetable[day][time] is None and sum(row.count(professor) for row in self.timetable) < 3:
+                self.시간표[day][time] = professor
+                return True
+        return False
+
+# 사용 예시:
+scheduler  = TimetableScheduler()
+professorname = "professorA"
+
+success  = scheduler.auto_assign_course(professor_name)
+if success:
+    print(f"{교수명}님의 수업이 배정되었습니다.")
+else:
+    print("수업 배정에 실패했습니다. 교수님의 일정 또는 슬롯의 가용성을 확인해주세요.")
+def save_timetable(self, filename):
+    with open(filename, 'w') as file:
+        for row in self.timetable:
+            file.write(','.join(map(str, row)) + '\n')
