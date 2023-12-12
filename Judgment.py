@@ -44,7 +44,9 @@ class Warning:
 
 
         st1 = []
-        for i in df[day]:
+        for i in self.df[day]:
+            print(i)
+            print(type(i))
             st1.append(eval(i)[1])
         st1 = set(st1)
 
@@ -91,6 +93,8 @@ class Warning:
 
         return jm
 
+    def data(self):
+        return self.df
 
 if __name__ == "__main__":
     df = File.ExcelFile.read("./save.xlsx")
